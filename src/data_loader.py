@@ -265,17 +265,42 @@ if __name__ == "__main__":
     
     wb = Workbook()
     ws = wb.add_sheet('Kids Connect output', cell_overwrite_ok=True)
-    ws.row(0).write(0,'ID')
-    ws.row(0).write(1,'name')
+    ws.row(0).write(0,'provider id')
+    ws.row(0).write(1,'provider name')
     ws.row(0).write(2,'e-mail')
+    ws.row(0).write(3,'activity id')
+    ws.row(0).write(4,'activity name')
+    ws.row(0).write(5,'introduction')
+    ws.row(0).write(6,'day')
+    ws.row(0).write(7,'time')
+    ws.row(0).write(8,'next event 1')
+    ws.row(0).write(9,'next event 2')
+    
     row_num = 1
+    
     for k in providers.keys():
         provider = providers.get(k)
         print "Processing provider {}".format(provider.id)
-        ws.row(row_num).write(0,provider.id)
-        ws.row(row_num).write(1,provider.name)
-        ws.row(row_num).write(2,provider.primary_email)
-        row_num += 1
+        
+        for activity in provider.activities:
+            ws.row(row_num).write(0,provider.id)
+            ws.row(row_num).write(1,provider.name)
+            ws.row(row_num).write(2,provider.primary_email)
+            
+            ws.row(row_num).write(3,activity.id)
+            ws.row(row_num).write(4,activity.name)
+            ws.row(row_num).write(5,activity.introduction)
+            
+            ws.row(row_num).write(6,activity.day)
+            ws.row(row_num).write(7,activity.time)
+            
+            if len(activity.next_dates) > 0:
+                event_col = 8
+                for next_event_date in activity.next_dates:
+                    ws.row(row_num).write(event_col, next_event_date.strftime('%d-%m-%Y'))
+                    event_col += 1
+
+            row_num += 1
         
     
     
