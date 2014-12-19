@@ -13,6 +13,7 @@ from dateutil.relativedelta import *
 from dateutil.rrule import *
 
 from xlrd import open_workbook
+from xlwt import Workbook
 
 
 class ServiceProvider(object):
@@ -151,7 +152,9 @@ def resize_next_dates(next_dates, num):
 
 
 INPUT_DIR = "../input-data/"
-FILE_NAME = "Data collection.xlsx"
+OUTPUT_DIR = "../output-data/"
+INPUT_FILE_NAME = "Data collection.xlsx"
+OUTPUT_FILE_NAME = "Data report.xls"
 
 if __name__ == "__main__":
 
@@ -160,7 +163,7 @@ if __name__ == "__main__":
                     action="store_true")
     
     parser.add_argument("--folder", type=str, help="folder to load from, defaults to {}".format(INPUT_DIR))
-    parser.add_argument("--filename", type=str, help="file to load data, defaults to {}".format(FILE_NAME))
+    parser.add_argument("--filename", type=str, help="file to load data, defaults to {}".format(INPUT_FILE_NAME))
 
     args = parser.parse_args()
     if args.send:
@@ -176,10 +179,10 @@ if __name__ == "__main__":
     if args.filename:
         file_name = args.filename
     else:
-        file_name = FILE_NAME  
+        file_name = INPUT_FILE_NAME  
         
     infile = os.path.join(folder_name, file_name)    
-    print "using data from file {}".format(infile)
+    print "using input data from file {}".format(infile)
     
     wb = open_workbook(infile)
     for s in wb.sheets():
@@ -255,13 +258,33 @@ if __name__ == "__main__":
         else:
             print 'Activity id:', act_ids[j], ' has a provider_id of ', activity_provider_id, ' which does not match a service provider id' 
                 
-        j = j+1
+        j += 1
         
     
     # output for report
+    
+    wb = Workbook()
+    ws = wb.add_sheet('Kids Connect output', cell_overwrite_ok=True)
+    ws.row(0).write(0,'ID')
+    ws.row(0).write(1,'name')
+    ws.row(0).write(2,'e-mail')
+    row_num = 1
     for k in providers.keys():
-        print
-        providers.get(k).display()
+        provider = providers.get(k)
+        print "Processing provider {}".format(provider.id)
+        ws.row(row_num).write(0,provider.id)
+        ws.row(row_num).write(1,provider.name)
+        ws.row(row_num).write(2,provider.primary_email)
+        row_num += 1
+        
+    
+    
+    out_folder_name = OUTPUT_DIR
+    out_file_name = OUTPUT_FILE_NAME      
+    output_file = os.path.join(out_folder_name, out_file_name)
+    wb.save(output_file)
+    print "writing output data to file {}".format(output_file)
 
 
+    
 
