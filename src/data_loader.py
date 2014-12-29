@@ -303,7 +303,6 @@ if __name__ == "__main__":
             row_num += 1
         
     
-    
     out_folder_name = OUTPUT_DIR
     out_file_name = OUTPUT_FILE_NAME      
     output_file = os.path.join(out_folder_name, out_file_name)
