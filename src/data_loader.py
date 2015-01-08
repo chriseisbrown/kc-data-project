@@ -15,42 +15,13 @@ from dateutil.rrule import *
 from xlrd import open_workbook
 from xlwt import Workbook
 
+from ServiceProvider import ServiceProvider
+from Activity import Activity
 
-class ServiceProvider(object):
-    def __init__(self):
-        self.id = ""
-        self.name = ""
-        self.primary_email = ""
-        self.activities = []
-
-    def display(self):
-        print 'Service provider:', self.id, ' ', self.name, ' ', self.primary_email
-        for a in self.activities:
-            a.display()
-        
-    def addActivity(self, activity):
-        self.activities.append(activity)
+from mandrill_provider import generate_email_to_provider
 
 
-class Activity(object):
-    def __init__(self):
-        self.id = ""
-        self.name = ""
-        self.introduction = ""
-        self.day = None
-        self.time = ""
-        self.next_dates = []
 
-    def display(self):
-        # will show encoding problems as ??? in output report
-        print 'Activity:', self.id, ' ', self.name, ' ', self.day, ' ', self.time
-        print 'Next occurs:'
-        if self.next_dates:
-            for i in range(len(self.next_dates)):
-                print self.next_dates[i].strftime('%d/%m/%Y'), ' at ', self.time
-        
-        print self.introduction.encode('utf-8')
-        #print 'Activity:', self.id, ' ', self.name, ' ', self.introduction.encode('utf-8', 'ignore')
 
 # globals
 day_names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -187,10 +158,6 @@ if __name__ == "__main__":
     wb = open_workbook(infile)
     for s in wb.sheets():
         print 'Found sheet:', s.name
-        for row in range(s.nrows):
-            values = []
-            for col in range(s.ncols):
-                values.append(s.cell(row,col).value)
     print
 
     '''print wb.sheet_names()
@@ -259,55 +226,60 @@ if __name__ == "__main__":
             print 'Activity id:', act_ids[j], ' has a provider_id of ', activity_provider_id, ' which does not match a service provider id' 
                 
         j += 1
-        
     
-    # output for report
-    
-    wb = Workbook()
-    ws = wb.add_sheet('Kids Connect output', cell_overwrite_ok=True)
-    ws.row(0).write(0,'provider id')
-    ws.row(0).write(1,'provider name')
-    ws.row(0).write(2,'e-mail')
-    ws.row(0).write(3,'activity id')
-    ws.row(0).write(4,'activity name')
-    ws.row(0).write(5,'introduction')
-    ws.row(0).write(6,'day')
-    ws.row(0).write(7,'time')
-    ws.row(0).write(8,'next event 1')
-    ws.row(0).write(9,'next event 2')
-    
-    row_num = 1
-    
-    for k in providers.keys():
-        provider = providers.get(k)
-        print "Processing provider {}".format(provider.id)
-        
-        for activity in provider.activities:
-            ws.row(row_num).write(0,provider.id)
-            ws.row(row_num).write(1,provider.name)
-            ws.row(row_num).write(2,provider.primary_email)
+    # if e-mail switch is on then generate and send e-mails, though only if the provider has some activities    
+    if args.send:
+        for k in providers.keys():
+            provider = providers.get(k)
+            if len(provider.activities) > 0:
+                generate_email_to_provider(provider)
             
-            ws.row(row_num).write(3,activity.id)
-            ws.row(row_num).write(4,activity.name)
-            ws.row(row_num).write(5,activity.introduction)
-            
-            ws.row(row_num).write(6,activity.day)
-            ws.row(row_num).write(7,activity.time)
-            
-            if len(activity.next_dates) > 0:
-                event_col = 8
-                for next_event_date in activity.next_dates:
-                    ws.row(row_num).write(event_col, next_event_date.strftime('%d-%m-%Y'))
-                    event_col += 1
-
-            row_num += 1
+    else:            
+        # set up output for report
+        wb = Workbook()
+        ws = wb.add_sheet('Kids Connect output', cell_overwrite_ok=True)
+        # make header row
+        ws.row(0).write(0,'provider id')
+        ws.row(0).write(1,'provider name')
+        ws.row(0).write(2,'e-mail')
+        ws.row(0).write(3,'activity id')
+        ws.row(0).write(4,'activity name')
+        ws.row(0).write(5,'introduction')
+        ws.row(0).write(6,'day')
+        ws.row(0).write(7,'time')
+        ws.row(0).write(8,'next event 1')
+        ws.row(0).write(9,'next event 2')
         
+        row_num = 1
+        for k in providers.keys():
+            provider = providers.get(k)
+            print "Processing provider {}".format(provider.id)
+            
+            for activity in provider.activities:
+                ws.row(row_num).write(0,provider.id)
+                ws.row(row_num).write(1,provider.name)
+                ws.row(row_num).write(2,provider.primary_email)
+                
+                ws.row(row_num).write(3,activity.id)
+                ws.row(row_num).write(4,activity.name)
+                ws.row(row_num).write(5,activity.introduction)
+                
+                ws.row(row_num).write(6,activity.day)
+                ws.row(row_num).write(7,activity.time)
+                
+                if len(activity.next_dates) > 0:
+                    event_col = 8
+                    for next_event_date in activity.next_dates:
+                        ws.row(row_num).write(event_col, next_event_date.strftime('%d-%m-%Y'))
+                        event_col += 1
     
-    out_folder_name = OUTPUT_DIR
-    out_file_name = OUTPUT_FILE_NAME      
-    output_file = os.path.join(out_folder_name, out_file_name)
-    wb.save(output_file)
-    print "writing output data to file {}".format(output_file)
+                row_num += 1    
+        
+        out_folder_name = OUTPUT_DIR
+        out_file_name = OUTPUT_FILE_NAME      
+        output_file = os.path.join(out_folder_name, out_file_name)
+        wb.save(output_file)
+        print "writing output data to file {}".format(output_file)
 
 
     
