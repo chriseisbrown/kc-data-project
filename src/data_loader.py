@@ -138,7 +138,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.send:
-        print "SENDING E-MAILS TO SERVICE PROVIDERS"
+        print "--send flag used so SENDING E-MAILS TO SERVICE PROVIDERS"
     
     folder_name = ""
     if args.folder:
