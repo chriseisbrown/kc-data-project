@@ -26,6 +26,12 @@ from mandrill_provider import generate_email_to_provider
 # globals
 day_names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
+INPUT_DIR = "../input-data/"
+OUTPUT_DIR = "../output-data/"
+INPUT_FILE_NAME = "Data collection.xlsx"
+OUTPUT_FILE_NAME = "Data report.xls"
+
+
 def find_day_of_week(in_date):
     'Given a date, return the name of its day of the week'
     return day_names[in_date.weekday()]
@@ -122,13 +128,7 @@ def resize_next_dates(next_dates, num):
     return return_list
 
 
-INPUT_DIR = "../input-data/"
-OUTPUT_DIR = "../output-data/"
-INPUT_FILE_NAME = "Data collection.xlsx"
-OUTPUT_FILE_NAME = "Data report.xls"
-
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--send", help="dispatches e-mails to service providers",
                     action="store_true")
@@ -160,10 +160,6 @@ if __name__ == "__main__":
         print 'Found sheet:', s.name
     print
 
-    '''print wb.sheet_names()
-    for sheet_name in wb.sheet_names():
-        print wb.sheet_by_name(sheet_name)
-    ''' 
     
     # make service provider map       
     provider_sheet = wb.sheet_by_name('Service providers')
@@ -281,6 +277,8 @@ if __name__ == "__main__":
         wb.save(output_file)
         print "writing output data to file {}".format(output_file)
 
+    print "finished!"
 
-    
+if __name__ == "__main__":
+    main()    
 
