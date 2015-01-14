@@ -28,7 +28,7 @@ Run the scripts:
 ----------------
 Where you parked the downloaded zip file, you should see a folder called kc-data-project-master.
 
-<b>prepare_emails.bat</b>      double-click on this script to read data from the "Data collection.xls" spreadsheet in the input-data folder and just write a report of what data will be used to send e-mails out.  Run this first and check that the data about to be sent to the service providers is correct.
+<b>prepare_emails.bat</b>      double-click on this script to read data from the "Data collection.xls" spreadsheet in the input-data folder and just write a report of what data will be used to send e-mails out.  Run this first and check that the data about to be sent to the service providers is correct.  The script will write its progress out to a file called prepare_emails_log.log.   Open this file to see if everything ran ok.
 
-<b>send_emails.bat</b>      double-click on this script to send e-mails to the service providers, using the data from the "Data collection.xls" spreadsheet in the input-data folder.  Note that you don't have to run prepare-emails.bat first but it is a good idea just to check.
+<b>send_emails.bat</b>      double-click on this script to send e-mails to the service providers, using the data from the "Data collection.xls" spreadsheet in the input-data folder.  Note that you don't have to run prepare-emails.bat first but it is a good idea just to check.  The script will write its progress out to a file called send_emails_log.log.  Open this file to see if everything ran ok.  
 
