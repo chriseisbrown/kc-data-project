@@ -87,7 +87,18 @@ def generate_email_to_provider(provider):
           'status': 'sent'}]
         '''
         
-        print result
+        result_dict = result[0]
+        send_status = result_dict["status"]
+        if send_status not in "sent":
+            print "ERROR: did not send e-mail to {}".format(to_email)
+            print result
+        else:
+            print "sent e-mail to provider {} {} [{}]".format(provider.id, to_name, to_email)
+            
+        reject_reason = result_dict["reject_reason"]
+        if reject_reason is not None:
+            print "ERROR: e-mail rejected by {}".format(to_email)
+        
     
     except mandrill.Error, e:
         # Mandrill errors are thrown as exceptions

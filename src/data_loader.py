@@ -1,6 +1,14 @@
 '''
 @author: chriseisbrown
 Created 3 Dec 2014
+
+Prepares data from the KC collection sheet ready for e-mailing out to service providers.
+
+If the --send switch is not specified it will just write the email contents to 
+an output file.
+
+If the --send switch is set it will send emails via Mandrill to the providers 
+  
 '''
 import argparse
 import os
@@ -29,7 +37,7 @@ day_names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 INPUT_DIR = "../input-data/"
 OUTPUT_DIR = "../output-data/"
 INPUT_FILE_NAME = "Data collection.xlsx"
-OUTPUT_FILE_NAME = "Data report.xls"
+OUTPUT_FILE_NAME = "data_report_{}.xls".format(datetime.today().strftime("%Y-%m-%d-%H%M"))
 
 
 def find_day_of_week(in_date):
@@ -130,34 +138,51 @@ def resize_next_dates(next_dates, num):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--send", help="dispatches e-mails to service providers",
+    parser.add_argument("--send", help="dispatches e-mails to service providers, if not set will just write a report out",
                     action="store_true")
     
-    parser.add_argument("--folder", type=str, help="folder to load from, defaults to {}".format(INPUT_DIR))
-    parser.add_argument("--filename", type=str, help="file to load data, defaults to {}".format(INPUT_FILE_NAME))
+    parser.add_argument("--infolder", type=str, help="folder to load from, defaults to {}".format(INPUT_DIR))
+    parser.add_argument("--infilename", type=str, help="file to load from, defaults to {}".format(INPUT_FILE_NAME))
+    parser.add_argument("--outfolder", type=str, help="folder to write to, defaults to {}".format(OUTPUT_DIR))
+    parser.add_argument("--outfilename", type=str, help="file to write to, defaults to {}".format(OUTPUT_FILE_NAME))
 
     args = parser.parse_args()
     if args.send:
-        print "--send flag used so SENDING E-MAILS TO SERVICE PROVIDERS"
+        print "--send flag has been set so SENDING E-MAILS TO SERVICE PROVIDERS"
     
-    folder_name = ""
-    if args.folder:
-        folder_name = args.folder
+    # set up for output file if specified
+    in_folder_name = ""
+    if args.infolder:
+        in_folder_name = args.infolder
     else:
-        folder_name = INPUT_DIR
+        in_folder_name = INPUT_DIR
         
-    file_name = ""
-    if args.filename:
-        file_name = args.filename
+    in_file_name = ""
+    if args.infilename:
+        in_file_name = args.infilename
     else:
-        file_name = INPUT_FILE_NAME  
+        in_file_name = INPUT_FILE_NAME  
         
-    infile = os.path.join(folder_name, file_name)    
+    infile = os.path.join(in_folder_name, in_file_name)    
     print "using input data from file {}".format(infile)
     
+    # set up for output file if specified
+    out_folder_name = ""
+    if args.outfolder:
+        out_folder_name = args.outfolder
+    else:
+        out_folder_name = OUTPUT_DIR
+        
+    out_file_name = ""
+    if args.outfilename:
+        out_file_name = args.outfilename
+    else:
+        out_file_name = OUTPUT_FILE_NAME  
+        
+
     wb = open_workbook(infile)
     for s in wb.sheets():
-        print 'Found sheet:', s.name
+        print 'found worksheet:', s.name
     print
 
     
@@ -223,7 +248,7 @@ def main():
                 
         j += 1
     
-    # if e-mail switch is on then generate and send e-mails, though only if the provider has some activities    
+    # if e-mail switch is on then generate and send e-mails, but only if the provider has some activities    
     if args.send:
         for k in providers.keys():
             provider = providers.get(k)
@@ -249,7 +274,7 @@ def main():
         row_num = 1
         for k in providers.keys():
             provider = providers.get(k)
-            print "Processing provider {}".format(provider.id)
+            print "Processing provider {} {}".format(provider.id, provider.name)
             
             for activity in provider.activities:
                 ws.row(row_num).write(0,provider.id)
@@ -270,9 +295,7 @@ def main():
                         event_col += 1
     
                 row_num += 1    
-        
-        out_folder_name = OUTPUT_DIR
-        out_file_name = OUTPUT_FILE_NAME      
+              
         output_file = os.path.join(out_folder_name, out_file_name)
         wb.save(output_file)
         print "writing output data to file {}".format(output_file)
