@@ -274,7 +274,7 @@ def main():
         row_num = 1
         for k in providers.keys():
             provider = providers.get(k)
-            print "Processing provider {} {}".format(provider.id, provider.name)
+            print "processing provider {} {}".format(provider.id, provider.name)
             
             for activity in provider.activities:
                 ws.row(row_num).write(0,provider.id)
