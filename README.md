@@ -1,7 +1,7 @@
 kc-data-project
 ===============
 
-data scripts repository
+Python data scripts to validate and send data to service providers.
 
 To use:
 
@@ -22,8 +22,7 @@ See the button marked "Download ZIP".  Click on this and you will get a download
 FOR WINDOWS ONLY - Run the install script
 -----------------------------------------
 Where you parked the downloaded zip file, you should see a folder called kc-data-project-master.
-Open this and you should see a file called windows_install.bat
-Double-click on this and it will set up the necessary script libraries.
+Open this and you should see a file called <b>windows_install.bat</b>.  Double-click on this and it will set up the necessary script libraries.
 
 Run the scripts:
 ----------------
