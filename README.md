@@ -26,7 +26,7 @@ Open this and you should see a file called <b>windows_install.bat</b>.  Double-c
 
 Run the scripts:
 ----------------
-In the folder that you expanded the downloaded zip file into, you should see a folder called kc-data-project-master.  This contains two scripts that you will run when you want to do the process of contacting service providers.  Get your "Data collection.xls" spreadsheet ready and then copy it into the <i>input-data</i> folder.  It wil be used for input to the mail out process.
+In the folder that you expanded the downloaded zip file into, you should see a folder called kc-data-project-master.  This contains two scripts that you will run when you want to do the process of contacting service providers.  Get your "Data collection.xls" spreadsheet ready and then copy it into the <i>input-data</i> folder.  It will be used for input to the mail out process.
 
 <b>prepare_emails.bat</b>      double-click on this script to read data from the "Data collection.xls" spreadsheet in the input-data folder and just write a report of what data will be used to send e-mails out.  Run this first.  It will write an Excel file called data_report with a timestamp of today's date and time in its name (e.g.; data_report_2015-01-14-1115.xls).  Open this file in Excel (or just double-click it).  Check that the data about to be sent to the service providers is correct.  As the prepare_emails script runs it will write its progress out to a file called prepare_emails_log.log.   Open the log file by double-clicking it to see if everything ran ok, no nasty error messages or warnings.
 
