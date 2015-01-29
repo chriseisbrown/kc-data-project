@@ -5,6 +5,8 @@ Python data scripts to validate and send data to service providers.
 
 To use:
 
+FOR WINDOWS USERS
+-----------------
 
 Install Python 2.7.9
 --------------------
@@ -18,9 +20,6 @@ Get the scripts
 With a browser go to https://github.com/chriseisbrown/kc-data-project
 
 See the button marked "Download ZIP".  Click on this and you will get a download zip file.  This will probably go to your Downloads file.  Expand the zip file into any folder you like, I'd suggest a folder something like C:\scripts\
-
-FOR WINDOWS USERS
------------------
 
 Run the install script
 -----------------------------------------
@@ -38,6 +37,9 @@ In the folder that you expanded the downloaded zip file into, you should see a f
 
 FOR MAC USERS
 -------------
+Install Python 2.7.9
+--------------------
+Mac OS X comes with the correct version of Python so there should be nothing to do here.
 
 Run the install script
 -----------------------------------------
