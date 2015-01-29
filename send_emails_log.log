@@ -1,0 +1,71 @@
+--send flag has been set so SENDING E-MAILS TO SERVICE PROVIDERS
+using input data from file input-data/Data collection.xlsx
+found worksheet: Service providers
+found worksheet: Activities
+found worksheet: Venue
+found worksheet: Taxonomy
+found worksheet: Service provider - taxonomy ass
+found worksheet: Activity - taxonomy association
+found worksheet: Venue - taxonomy associations
+
+generating e-mail to provider SP30 Holmewood at The Windmill
+sent e-mail to provider SP30 Holmewood at The Windmill [chris.brown@adaptivelab.com]
+generating e-mail to provider SP31 Hillmead Children's Centre
+sent e-mail to provider SP31 Hillmead Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP05 Clapham Library
+sent e-mail to provider SP05 Clapham Library [chris.brown@adaptivelab.com]
+generating e-mail to provider SP04 Carnegie Library
+sent e-mail to provider SP04 Carnegie Library [chris.brown@adaptivelab.com]
+generating e-mail to provider SP07 Clapham Manor Children's Centre
+sent e-mail to provider SP07 Clapham Manor Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP06 Minet Library
+sent e-mail to provider SP06 Minet Library [chris.brown@adaptivelab.com]
+generating e-mail to provider SP01 The Minnow Club
+sent e-mail to provider SP01 The Minnow Club [chris.brown@adaptivelab.com]
+generating e-mail to provider SP32 The Spinney
+sent e-mail to provider SP32 The Spinney [chris.brown@adaptivelab.com]
+generating e-mail to provider SP03 Brixton Library
+sent e-mail to provider SP03 Brixton Library [chris.brown@adaptivelab.com]
+generating e-mail to provider SP02 Ruby Rhymes
+sent e-mail to provider SP02 Ruby Rhymes [chris.brown@adaptivelab.com]
+generating e-mail to provider SP09 Effra Early Years & Children's Centre
+sent e-mail to provider SP09 Effra Early Years & Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP29 Corpus Christi Parent & Toddler Group
+sent e-mail to provider SP29 Corpus Christi Parent & Toddler Group [chris.brown@adaptivelab.com]
+generating e-mail to provider SP28 Treehouse Children's Centre
+sent e-mail to provider SP28 Treehouse Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP27 Stockwell Children's Centre
+sent e-mail to provider SP27 Stockwell Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP26 Clapham Picture House
+sent e-mail to provider SP26 Clapham Picture House [chris.brown@adaptivelab.com]
+generating e-mail to provider SP25 Ritzy Picture House
+sent e-mail to provider SP25 Ritzy Picture House [chris.brown@adaptivelab.com]
+generating e-mail to provider SP24 Brixton Recreation Centre
+sent e-mail to provider SP24 Brixton Recreation Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP22 Loughborough Children's Centre
+sent e-mail to provider SP22 Loughborough Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP21 The Mulberry Centre
+sent e-mail to provider SP21 The Mulberry Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP20 Max Roach/Loughborough pre school (tbc)
+sent e-mail to provider SP20 Max Roach/Loughborough pre school (tbc) [chris.brown@adaptivelab.com]
+generating e-mail to provider SP18 The Weir Link Children's Centre
+sent e-mail to provider SP18 The Weir Link Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP19 Kennington Adventure Playground
+sent e-mail to provider SP19 Kennington Adventure Playground [chris.brown@adaptivelab.com]
+generating e-mail to provider SP12 Liz Atkinson Children's Centre
+sent e-mail to provider SP12 Liz Atkinson Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP13 Whippersnappers
+sent e-mail to provider SP13 Whippersnappers [chris.brown@adaptivelab.com]
+generating e-mail to provider SP10 Jessop Primary School & Children's Centre
+sent e-mail to provider SP10 Jessop Primary School & Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP11 Jubilee Children's Centre
+sent e-mail to provider SP11 Jubilee Children's Centre [chris.brown@adaptivelab.com]
+generating e-mail to provider SP16 One O'Clock Club Slade Gardens
+sent e-mail to provider SP16 One O'Clock Club Slade Gardens [chris.brown@adaptivelab.com]
+generating e-mail to provider SP17 Kids Company (Kids Venture)
+sent e-mail to provider SP17 Kids Company (Kids Venture) [chris.brown@adaptivelab.com]
+generating e-mail to provider SP14 Bea's Baby Bop
+sent e-mail to provider SP14 Bea's Baby Bop [chris.brown@adaptivelab.com]
+generating e-mail to provider SP15 Dads and Littluns
+sent e-mail to provider SP15 Dads and Littluns [chris.brown@adaptivelab.com]
+finished!

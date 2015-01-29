@@ -1,0 +1,43 @@
+using input data from file input-data/Data collection.xlsx
+found worksheet: Service providers
+found worksheet: Activities
+found worksheet: Venue
+found worksheet: Taxonomy
+found worksheet: Service provider - taxonomy ass
+found worksheet: Activity - taxonomy association
+found worksheet: Venue - taxonomy associations
+
+processing provider SP30 Holmewood at The Windmill
+processing provider SP31 Hillmead Children's Centre
+processing provider SP05 Clapham Library
+processing provider SP04 Carnegie Library
+processing provider SP07 Clapham Manor Children's Centre
+processing provider SP06 Minet Library
+processing provider SP01 The Minnow Club
+processing provider SP32 The Spinney
+processing provider SP03 Brixton Library
+processing provider SP02 Ruby Rhymes
+processing provider SP09 Effra Early Years & Children's Centre
+processing provider SP08 Big Fish Little Fish
+processing provider SP29 Corpus Christi Parent & Toddler Group
+processing provider SP28 Treehouse Children's Centre
+processing provider SP27 Stockwell Children's Centre
+processing provider SP26 Clapham Picture House
+processing provider SP25 Ritzy Picture House
+processing provider SP24 Brixton Recreation Centre
+processing provider SP23 Ma Pa Spa
+processing provider SP22 Loughborough Children's Centre
+processing provider SP21 The Mulberry Centre
+processing provider SP20 Max Roach/Loughborough pre school (tbc)
+processing provider SP18 The Weir Link Children's Centre
+processing provider SP19 Kennington Adventure Playground
+processing provider SP12 Liz Atkinson Children's Centre
+processing provider SP13 Whippersnappers
+processing provider SP10 Jessop Primary School & Children's Centre
+processing provider SP11 Jubilee Children's Centre
+processing provider SP16 One O'Clock Club Slade Gardens
+processing provider SP17 Kids Company (Kids Venture)
+processing provider SP14 Bea's Baby Bop
+processing provider SP15 Dads and Littluns
+writing output data to file output-data/data_report_2015-01-29-1033.xls
+finished!
