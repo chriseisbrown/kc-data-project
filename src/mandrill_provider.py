@@ -1,22 +1,19 @@
 '''
 Created on 19 Dec 2014
-This script reads in a validated input xls and e-mails the service providers
-with details of their upcoming activities
+This is the e-mail provider function to get mails out via Mandrill
 @author: chriseisbrown
 '''
 import mandrill
-import argparse
-import os
-from xlrd import open_workbook
 
 
 def generate_email_to_provider(provider):
-    print "generating e-mail to provider {} {}".format(provider.id, provider.name)
+    print "generating e-mail to provider {} {} [{}]".format(provider.id, provider.name, provider.primary_email)
 
     try:
         # assemble data from service provider to set up the e-mail
-        to_email = "chris.brown@adaptivelab.com"
+        #to_email = "chris.brown@adaptivelab.com"
         #to_email = "tracey_gilbert@yahoo.com"
+        to_email = provider.primary_email
         
         to_name = provider.name    
         subject = provider.name + " - time to check your KidsConnect activities"
@@ -29,7 +26,7 @@ def generate_email_to_provider(provider):
         activity_table_row = "<tr>{}</tr>".format(activity_row_header)
 
         for activity in provider.activities:     
-            activity_row_cells = "<td>{}</td><td>{}</td><td>{}</td>".format(activity.name, activity.day, activity.time)
+            activity_row_cells = "<td>{}</td><td>{}</td><td>{}</td>".format(activity.name.encode('utf-8)'), activity.day, activity.time)
             activity_next_dates = "<td></td><td></td>"
             
             if len(activity.next_dates) > 0:
@@ -47,14 +44,15 @@ def generate_email_to_provider(provider):
         table_section = activity_table
         
         html_blurb2 = "<p>Please can you check the details we've provided and let us know if they are correct by replying to this e-mail."
-        html_blurb3 = "<p>If there are any errors then please e-mail or call us on XXX-XXX-XXXX at your earliest convenience."
+        html_blurb3 = "<p>If there are any errors then please e-mail or call us on 07930 441326 at your earliest convenience."
         html_blurb4 = "<p>If there is a * marked in any of your entries then we are lacking some data so please advise us."
         
-        html_signature = "<p> Thanks! from the team at KidsConnect </P>"
+        html_signature = "<p> Thanks! from the team at KidsConnect </p>"
         
         html_string = html_heading + html_blurb1 + table_section + html_blurb2 + html_blurb3 + html_blurb4 + html_signature
         
-        mandrill_client = mandrill.Mandrill('cF8W6ieOlJoYSdewzmaE7A')
+        # mandrill_client = mandrill.Mandrill('cF8W6ieOlJoYSdewzmaE7A') Chris' API key
+        mandrill_client = mandrill.Mandrill('mRzfYZBdpDoakMWVmTJCGg')  # API key for updates@kidsconnect.org
         message = {
          'attachments': None,
          'auto_html': None,

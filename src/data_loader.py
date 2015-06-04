@@ -12,6 +12,7 @@ If the --send switch is set it will send emails via Mandrill to the providers
 '''
 import argparse
 import os
+import traceback
 
 from datetime import date
 from datetime import datetime
@@ -227,7 +228,12 @@ def main():
             ac.time = act_start_times[j]
             
             # work out what day the activity runs on from its start date
-            start_date = datetime.strptime(act_start_dates[j], "%d/%m/%Y").date()
+            try:
+                start_date = datetime.strptime(act_start_dates[j], "%d/%m/%Y").date()
+            except TypeError as e:
+                print traceback.print_exc()
+                print "at row {}".format(j)
+                
             ac.day = find_day_of_week(start_date)
             
             ends_on_date = datetime.strptime(act_last_dates[j], "%d/%m/%Y").date()
