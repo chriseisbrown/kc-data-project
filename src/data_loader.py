@@ -13,6 +13,7 @@ If the --send switch is set it will send emails via Mandrill to the providers
 import argparse
 import os
 import traceback
+import sys
 
 from datetime import date
 from datetime import datetime
@@ -231,8 +232,10 @@ def main():
             try:
                 start_date = datetime.strptime(act_start_dates[j], "%d/%m/%Y").date()
             except TypeError as e:
-                print traceback.print_exc()
-                print "at row {}".format(j)
+                exc_type, exc_value, exc_traceback = sys.exc_info()
+                print "Error converting activity start date at row {}. {}".format(j, str(e))
+                print "Try converting the date column into text and trying again.  Also check that the year has century numbers i.e.; it is 2015 rather than 15"
+                traceback.print_exception(exc_type, exc_value, exc_traceback, limit=2, file=sys.stdout)
                 
             ac.day = find_day_of_week(start_date)
             
