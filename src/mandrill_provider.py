@@ -60,7 +60,7 @@ def generate_email_to_provider(provider):
          'bcc_address': 'Rachel@kidsconnect.org.uk',
          'from_email': 'updates@kidsconnect.org.uk',
          'from_name': 'Kids Connect',
-         'headers': {'Reply-To': 'updates@kidsconnect.org'},
+         'headers': {'Reply-To': 'updates@kidsconnect.org.uk'},
          'html': html_string,
          'important': False,
          'inline_css': None,

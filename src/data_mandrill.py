@@ -24,7 +24,7 @@ try:
      'inline_css': None,
      'merge': True,
      'subject': 'Please check your data',
-     'tags': ['password-resets'],
+     'tags': ['Data check'],
      'text': 'Example text content',
      'to': [{'email': to_email,
              'name': to_name,
